@@ -5,7 +5,6 @@ import { generateJwt } from "../../utils/jwt.js";
 export const register = async(req, res)=>{
     try {
         const data = req.body
-        console.log(req.body)
         const newUser = new User(data)
         newUser.password = await encrypt(newUser.password)
         await newUser.save()
