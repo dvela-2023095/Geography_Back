@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "e91b0238-d893-44ef-927a-86ddc6194761",
+		"name": "Geography_Game",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37956961"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "dvela",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Dvela@1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:2636/v1/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2636",
+					"path": [
+						"v1",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "userLogin",
+							"value": "dvela",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "Dvela@1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:2636/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2636",
+					"path": [
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
