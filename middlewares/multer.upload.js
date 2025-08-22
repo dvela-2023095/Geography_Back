@@ -38,3 +38,4 @@ const multerConfig = (destinationPath) =>{
 }
 
 export const uploadLevels = multerConfig('../upload/img/levels')
+export const uploadQuestion=multerConfig('../upload/img/questions')

@@ -8,16 +8,22 @@ export const validateJwt = async(req, res , next)=>{
         if(!authorization){
             return res.status(401).send({message:'Authorized'})
         }
-
-        if(!token){
-            return res.status(401).send({message:'Unauthorized: Token malformed'})
-
-        }
-        let user = jwt.verify(token, secretKey)
+        let user = jwt.verify(authorization, secretKey)
         req.user = user
         next()
     }catch (error){
         console.error(error)
         return res.status(401).send({message:'Invalid credentials'})
+    }
+}
+
+export const isAdmin = async(req, res, next)=>{
+    try {
+        const {user}=req
+        if(user.role !== 'ADMIN') return res.status(403).send({success:false,message:`You don't have access`})
+            next()
+    } catch (error) {
+        console.error(error)
+        return res.status(401).send({success:false,message:'Invalid credentials'})
     }
 }

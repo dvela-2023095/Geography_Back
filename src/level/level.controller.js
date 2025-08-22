@@ -4,7 +4,9 @@ export const addLevel = async (req, res)=>{
     try{
         const data = req.body
         const newLevel = new Level(data)
-        await newLevel.save()
+        newLevel.flag = req.files.flag[0].filename
+        newLevel.levelImage = req.files.levelImage[0].filename
+        newLevel.save()
         return res.send({success:true, message:'Level created successfully'})
     }catch(e){
         console.error(e)

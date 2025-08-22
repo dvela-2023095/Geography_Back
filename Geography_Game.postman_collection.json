@@ -1,19 +1,25 @@
 {
 	"info": {
-		"_postman_id": "e91b0238-d893-44ef-927a-86ddc6194761",
+		"_postman_id": "02924378-2bb7-45a0-8f1d-b878ac22e14f",
 		"name": "Geography_Game",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37956961"
+		"_exporter_id": "37956957"
 	},
 	"item": [
 		{
 			"name": "Levels",
 			"item": [
 				{
-					"name": "getLevels",
+					"name": "Addlevel",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
@@ -25,12 +31,12 @@
 								{
 									"key": "levelImage",
 									"type": "file",
-									"src": "postman-cloud:///1f07f861-13de-46a0-9fd0-f194239fbfcb"
+									"src": "/C:/Users/DELL/Downloads/Peten-1755886753288.jpeg"
 								},
 								{
 									"key": "flag",
 									"type": "file",
-									"src": "postman-cloud:///1f07f861-47fa-4420-9e1e-6cf3a2605d00"
+									"src": "/C:/Users/DELL/Downloads/guatemala-1755886753288.jpeg"
 								}
 							]
 						},
@@ -81,6 +87,98 @@
 			]
 		},
 		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Agregar Pregunta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question",
+									"value": "¿Cuál es la capital de Guatemala?",
+									"type": "text"
+								},
+								{
+									"key": "opciones[0][answer]",
+									"value": "Guatemala",
+									"type": "text"
+								},
+								{
+									"key": "opciones[0][picture]",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/guatemala-1755886753288.jpeg"
+								},
+								{
+									"key": "opciones[0][isCorrect]",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "opciones[1][answer]",
+									"value": "Antigua Guatemala",
+									"type": "text"
+								},
+								{
+									"key": "opciones[1][picture]",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/mexico-1755887432168.png"
+								},
+								{
+									"key": "opciones[1][isCorrect]",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "opciones[2][picture]",
+									"type": "file",
+									"src": "/C:/Users/DELL/OneDrive/Imágenes/Capturas de pantalla/Captura de pantalla 2025-08-19 174906.png"
+								},
+								{
+									"key": "opciones[2][isCorrect]",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "opciones[2][answer]",
+									"value": "Quiche",
+									"type": "text"
+								},
+								{
+									"key": "level",
+									"value": "68a8e0786446bd73f80c7b99",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/questions/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"questions",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",
@@ -117,6 +215,19 @@
 		},
 		{
 			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"token\",data.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],

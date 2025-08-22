@@ -7,6 +7,7 @@ export const register = async(req, res)=>{
         const data = req.body
         const newUser = new User(data)
         newUser.password = await encrypt(newUser.password)
+        newUser.role = 'USER'
         await newUser.save()
         return res.send({ success: true, message: 'User Registered successfully' })
     } catch (error) {
@@ -24,7 +25,8 @@ export const login = async(req,res)=>{
         if (user && await checkPassword(user.password,password)){
             let loggedUser ={
                 uid:user._id,
-                username: user.username
+                username: user.username,
+                role:user.role
             }
             let token = await generateJwt(loggedUser)
             return res.send({success:true, message: `Welcome ${user.password, password}`,loggedUser,token})
