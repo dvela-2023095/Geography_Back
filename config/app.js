@@ -3,6 +3,8 @@ import morgan from 'morgan'
 import helmet from 'helmet'
 import cors from 'cors'
 import authRoutes from '../src/auth/auth.routes.js'
+import levelRoutes from '../src/level/level.routes.js'
+
 const configs =(app)=>{
     app.use(express.json())
     app.use(express.urlencoded({extended:true}))
@@ -13,6 +15,7 @@ const configs =(app)=>{
 
 const routes =(app)=>{
     app.use('/v1',authRoutes)
+    app.use('/v1/levels', levelRoutes)
 }
 
 export const initServer = ()=>{

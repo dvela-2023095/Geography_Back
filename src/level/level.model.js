@@ -5,16 +5,13 @@ const levelSchema = Schema(
         name:{
             type:String,
             minlength:[4,'The name need at least 4 characters'],
-            maxlength:[56,`The name can't overcome 56 characters`],
-            required:[true,'Name is required']
+            maxlength:[56,`The name can't overcome 56 characters`]
         },
         levelImage:{
-            type:String,
-            required:[true,'Level image is required']
+            type:String
         },
         flag:{
-            type:String,
-            required:[true,'Flag is required']
+            type:String
         }
     }
 )
