@@ -7,6 +7,80 @@
 	},
 	"item": [
 		{
+			"name": "Levels",
+			"item": [
+				{
+					"name": "getLevels",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Mexico",
+									"type": "text"
+								},
+								{
+									"key": "levelImage",
+									"type": "file",
+									"src": "postman-cloud:///1f07f861-13de-46a0-9fd0-f194239fbfcb"
+								},
+								{
+									"key": "flag",
+									"type": "file",
+									"src": "postman-cloud:///1f07f861-47fa-4420-9e1e-6cf3a2605d00"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/levels/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"levels",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLevels",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/levels/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"levels",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",
