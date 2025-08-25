@@ -29,7 +29,8 @@ const questionSchema = Schema(
     },
     level:{
         type:Schema.Types.ObjectId,
-        ref:'Level'
+        ref:'Level',
+        required:[true,'Level id is required']
     }
  }
 )

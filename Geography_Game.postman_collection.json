@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e91b0238-d893-44ef-927a-86ddc6194761",
+		"_postman_id": "88e9ae2e-616f-4942-86bf-7a6f582c58b3",
 		"name": "Geography_Game",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37956961"
@@ -10,27 +10,33 @@
 			"name": "Levels",
 			"item": [
 				{
-					"name": "getLevels",
+					"name": "Addlevel",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "formdata",
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Mexico",
+									"value": "Colombia",
 									"type": "text"
 								},
 								{
 									"key": "levelImage",
 									"type": "file",
-									"src": "postman-cloud:///1f07f861-13de-46a0-9fd0-f194239fbfcb"
+									"src": "/C:/Users/PC/Downloads/cartagena.jpeg"
 								},
 								{
 									"key": "flag",
 									"type": "file",
-									"src": "postman-cloud:///1f07f861-47fa-4420-9e1e-6cf3a2605d00"
+									"src": "/C:/Users/PC/Downloads/colombia.png"
 								}
 							]
 						},
@@ -59,8 +65,29 @@
 						"method": "GET",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": []
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "levelsCompleted[0][level]",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "levelsCompleted[1][level]",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "blockedLevels[0][level]",
+									"value": "",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:2636/v1/levels/list",
@@ -81,6 +108,232 @@
 			]
 		},
 		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Agregar Pregunta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "question",
+									"value": "¿Cuál es la capital de Guatemala?",
+									"type": "text"
+								},
+								{
+									"key": "opciones[0][answer]",
+									"value": "Guatemala",
+									"type": "text"
+								},
+								{
+									"key": "opciones[0][picture]",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/guatemala-1755886753288.jpeg"
+								},
+								{
+									"key": "opciones[0][isCorrect]",
+									"value": "true",
+									"type": "text"
+								},
+								{
+									"key": "opciones[1][answer]",
+									"value": "Antigua Guatemala",
+									"type": "text"
+								},
+								{
+									"key": "opciones[1][picture]",
+									"type": "file",
+									"src": "/C:/Users/DELL/Downloads/mexico-1755887432168.png"
+								},
+								{
+									"key": "opciones[1][isCorrect]",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "opciones[2][picture]",
+									"type": "file",
+									"src": "/C:/Users/DELL/OneDrive/Imágenes/Capturas de pantalla/Captura de pantalla 2025-08-19 174906.png"
+								},
+								{
+									"key": "opciones[2][isCorrect]",
+									"value": "false",
+									"type": "text"
+								},
+								{
+									"key": "opciones[2][answer]",
+									"value": "Quiche",
+									"type": "text"
+								},
+								{
+									"key": "level",
+									"value": "68a8e0786446bd73f80c7b99",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/questions/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"questions",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Progress",
+			"item": [
+				{
+					"name": "addProgress",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user",
+									"value": "68ac9d42332f2c03f81a9599",
+									"type": "text"
+								},
+								{
+									"key": "levelsCompleted[0][level]",
+									"value": "68a8b4a17d71b21851a6a058",
+									"type": "text"
+								},
+								{
+									"key": "levelsCompleted[1][level]",
+									"value": "68a8b7489e50162c47451b35",
+									"type": "text"
+								},
+								{
+									"key": "blockedLevels[0][level]",
+									"value": "68ac9e78332f2c03f81a95a2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/progress/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"progress",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByUser",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/progress/byUser/68ac9d42332f2c03f81a9599",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"progress",
+								"byUser",
+								"68ac9d42332f2c03f81a9599"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "levelsCompleted[0][level]",
+									"value": "68a8b4a17d71b21851a6a058",
+									"type": "text"
+								},
+								{
+									"key": "levelsCompleted[1][level]",
+									"value": "68a8b7489e50162c47451b35",
+									"type": "text"
+								},
+								{
+									"key": "levelsCompleted[2][level]",
+									"value": "68ac9e78332f2c03f81a95a2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:2636/v1/progress/update/68aca3ae49c1d10e1ca74671",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "2636",
+							"path": [
+								"v1",
+								"progress",
+								"update",
+								"68aca3ae49c1d10e1ca74671"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Register",
 			"request": {
 				"method": "POST",
@@ -90,12 +343,17 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "dvela",
+							"value": "rmartin",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "Dvela@1",
+							"value": "Rmartin@6",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "ADMIN",
 							"type": "text"
 						}
 					]
@@ -117,6 +375,19 @@
 		},
 		{
 			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"token\",data.token)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -145,6 +416,58 @@
 					"path": [
 						"v1",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addProgress",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "user",
+							"value": "68ac9d42332f2c03f81a9599",
+							"type": "text"
+						},
+						{
+							"key": "levelsCompleted[0][level]",
+							"value": "68a8b4a17d71b21851a6a058",
+							"type": "text"
+						},
+						{
+							"key": "levelsCompleted[1][level]",
+							"value": "68a8b7489e50162c47451b35",
+							"type": "text"
+						},
+						{
+							"key": "blockedLevels[0][level]",
+							"value": "68ac9e78332f2c03f81a95a2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:2636/v1/progress/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "2636",
+					"path": [
+						"v1",
+						"progress",
+						"add"
 					]
 				}
 			},

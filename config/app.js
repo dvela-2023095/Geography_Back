@@ -4,6 +4,8 @@ import helmet from 'helmet'
 import cors from 'cors'
 import authRoutes from '../src/auth/auth.routes.js'
 import levelRoutes from '../src/level/level.routes.js'
+import questionRoutes from '../src/question/question.routes.js'
+import progressRoutes from '../src/progress/progress.routes.js'
 
 const configs =(app)=>{
     app.use(express.json())
@@ -16,6 +18,8 @@ const configs =(app)=>{
 const routes =(app)=>{
     app.use('/v1',authRoutes)
     app.use('/v1/levels', levelRoutes)
+    app.use('/v1/questions',questionRoutes)
+    app.use('/v1/progress', progressRoutes)
 }
 
 export const initServer = ()=>{

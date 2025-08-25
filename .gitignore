@@ -1,2 +1,12 @@
 node_modules/
 .env
+
+upload/img/levels/*.png
+upload/img/levels/*.jpg
+upload/img/levels/*.jpeg
+upload/img/levels/*.gif
+
+upload/img/questions/*.png
+upload/img/questions/*.jpg
+upload/img/questions/*.jpeg
+upload/img/questions/*.gif

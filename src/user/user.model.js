@@ -12,6 +12,12 @@ const userSchema = Schema(
             type:String,
             minlength:[8, 'The password need at least 8 characterds'],
             required:[true, 'Password is required']
+        },
+        role:{
+            type:String,
+            required:[true,'The role is required'],
+            uppercase:true,
+            enum:['USER','ADMIN']
         }
     }
 )
