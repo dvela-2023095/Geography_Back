@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "88e9ae2e-616f-4942-86bf-7a6f582c58b3",
+		"_postman_id": "e66f66e8-74ba-452f-a618-5f2e059e0aec",
 		"name": "Geography_Game",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37956957"
@@ -278,54 +278,6 @@
 								"progress",
 								"byUser",
 								"68ac9d42332f2c03f81a9599"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "authorization",
-								"value": "{{token}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "levelsCompleted[0][level]",
-									"value": "68a8b4a17d71b21851a6a058",
-									"type": "text"
-								},
-								{
-									"key": "levelsCompleted[1][level]",
-									"value": "68a8b7489e50162c47451b35",
-									"type": "text"
-								},
-								{
-									"key": "levelsCompleted[2][level]",
-									"value": "68ac9e78332f2c03f81a95a2",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:2636/v1/progress/update/68aca3ae49c1d10e1ca74671",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "2636",
-							"path": [
-								"v1",
-								"progress",
-								"update",
-								"68aca3ae49c1d10e1ca74671"
 							]
 						}
 					},
