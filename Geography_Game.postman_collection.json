@@ -31,20 +31,12 @@
 								{
 									"key": "levelImage",
 									"type": "file",
-<<<<<<< HEAD
-									"src": "/C:/Users/DELL/Downloads/Peten-1755886753288.jpeg"
-=======
 									"src": "/C:/Users/PC/Downloads/cartagena.jpeg"
->>>>>>> sveliz
 								},
 								{
 									"key": "flag",
 									"type": "file",
-<<<<<<< HEAD
-									"src": "/C:/Users/DELL/Downloads/guatemala-1755886753288.jpeg"
-=======
 									"src": "/C:/Users/PC/Downloads/colombia.png"
->>>>>>> sveliz
 								}
 							]
 						},
@@ -208,8 +200,6 @@
 			]
 		},
 		{
-<<<<<<< HEAD
-=======
 			"name": "Progress",
 			"item": [
 				{
@@ -344,7 +334,6 @@
 			]
 		},
 		{
->>>>>>> sveliz
 			"name": "Register",
 			"request": {
 				"method": "POST",

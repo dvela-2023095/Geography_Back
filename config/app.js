@@ -19,10 +19,7 @@ const routes =(app)=>{
     app.use('/v1',authRoutes)
     app.use('/v1/levels', levelRoutes)
     app.use('/v1/questions',questionRoutes)
-<<<<<<< HEAD
-=======
     app.use('/v1/progress', progressRoutes)
->>>>>>> sveliz
 }
 
 export const initServer = ()=>{
