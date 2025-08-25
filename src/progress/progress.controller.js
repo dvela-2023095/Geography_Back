@@ -1,14 +1,19 @@
 import Progress from './progress.model.js'
-
-export const addProgress = async (req, res) => {
+import Levels from '../level/level.model.js';
+export const addProgress = async (user) => {
     try {
-        const data = req.body
-        const newProgress = new Progress(data)
-        await newProgress.save()
-        return res.send({ success: true, message: 'Progress created successfully', progress: newProgress })
+        let levelsBlocked = await Levels.find()
+        let firstLevel = levelsBlocked[0]
+        levelsBlocked = levelsBlocked.slice(1)
+        let newProgress = new Progress({
+            user:user,
+            levelsCompleted:[],
+            blockedLevels: levelsBlocked,
+            unblockedLevel:firstLevel
+        })
+        await newProgress.save()    
     } catch (e) {
         console.error(e)
-        return res.status(500).send({ success: false, message: 'General error creating progress.' })
     }
 }
 
@@ -30,38 +35,22 @@ export const getProgressByUser = async (req, res) => {
     }
 }
 
-export const updateProgress = async (req, res) => {
+
+export const updateProgress = async(req, res)=>{
     try {
-        const { id } = req.params;
-        let data = req.body;
-
-        if (data.levelsCompleted && Array.isArray(data.levelsCompleted)) {
-            data.levelsCompleted = data.levelsCompleted.filter(lvl => lvl.level && lvl.level !== "");
+        const {user}=req
+        const {levelCompleted}= req.body
+        let userProgress = await Progress.findOne(user)
+        userProgress.levelsCompleted.push(levelCompleted)
+        if(userProgress.blockedLevels.length !== 0){
+            
+            userProgress.unblockedLevel = userProgress.blockedLevels[0]
+            userProgress.blockedLevels = userProgress.blockedLevels.slice(1)
         }
-
-        if (data.blockedLevels && Array.isArray(data.blockedLevels)) {
-            data.blockedLevels = data.blockedLevels.filter(bl => bl.level && bl.level !== "");
-        }
-
-        const updatedProgress = await Progress.findByIdAndUpdate(id, data, { new: true })
-            .populate('levelsCompleted.level', '-_id')
-            .populate('blockedLevels.level', '-_id');
-
-        if (!updatedProgress) {
-            return res.status(404).send({success: false,message: 'Progress not found.'})
-        }
-
-        if (data.levelsCompleted.length > 0) {
-            updatedProgress.blockedLevels = updatedProgress.blockedLevels.filter(
-                bl => !data.levelsCompleted.some(lvl => lvl.level.toString() === bl.level.toString())
-            )
-            await updatedProgress.save()
-        }
-        return res.status(200).send({success: true,message: 'Progress updated successfully.',updatedProgress})
-    } catch (e) {
-        console.error(e)
-        return res.status(500).send({ success: false, message: 'General error updating progress', e })
+        await userProgress.save()
+        return res.send({success:true,message:'Progress successfully ulpdated'})
+    } catch (error) {
+        console.error(error)
+        return res.status(500).send({success:false,message:'General error updating the progress'})
     }
 }
-
-

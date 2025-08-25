@@ -1,6 +1,7 @@
 import User from "../user/user.model.js";
 import { checkPassword, encrypt } from "../../utils/encrypt.js";
 import { generateJwt } from "../../utils/jwt.js";
+import { addProgress } from "../progress/progress.controller.js";
 
 export const register = async(req, res)=>{
     try {
@@ -9,6 +10,7 @@ export const register = async(req, res)=>{
         newUser.password = await encrypt(newUser.password)
         newUser.role = 'USER'
         await newUser.save()
+        await addProgress(newUser._id)
         return res.send({ success: true, message: 'User Registered successfully' })
     } catch (error) {
         console.error(error)
