@@ -1,6 +1,7 @@
 import User from "../user/user.model.js";
 import { checkPassword, encrypt } from "../../utils/encrypt.js";
 import { generateJwt } from "../../utils/jwt.js";
+import { addProgress } from "../progress/progress.controller.js";
 
 export const register = async(req, res)=>{
     try {
@@ -8,7 +9,9 @@ export const register = async(req, res)=>{
         const newUser = new User(data)
         newUser.password = await encrypt(newUser.password)
         newUser.role = 'USER'
+        if(newUser) return res.status(403).send({success:false, message:'User already exist.'})
         await newUser.save()
+        await addProgress(newUser._id)
         return res.send({ success: true, message: 'User Registered successfully' })
     } catch (error) {
         console.error(error)

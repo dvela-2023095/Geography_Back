@@ -26,6 +26,11 @@ const progressSchema = Schema(
                     }
                 }
             ]
+        },
+        unblockedLevel:{
+            type:Schema.Types.ObjectId,
+            required:[true,'Unblocked level is required'],
+            ref:'Level'
         }
     }
 )
