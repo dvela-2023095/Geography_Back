@@ -4,7 +4,7 @@ import { userValidator } from "../../middlewares/validations.js";
 
 const api = Router()
 
-api.post('/register', register)
+api.post('/register',[userValidator], register)
 api.post('/login', login)
 
 
