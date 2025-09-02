@@ -19,8 +19,8 @@ export const addProgress = async (user) => {
 
 export const getProgressByUser = async (req, res) => {
     try {
-        const { userId } = req.params
-        const progress = await Progress.findOne({ user: userId })
+        const { id } = req.params
+        const progress = await Progress.findOne({ user: id })
             .populate('levelsCompleted.level', '-_id')
             .populate('blockedLevels.level', '-_id')
 
