@@ -28,25 +28,17 @@ export const getQuestions = async(req,res)=>{
         let levelQuestions = []
         if(questionBank.length === 0) return res.status(404).send({success:false,message:'There is no questions'})
         if(questionBank.length >10){
-            let pastNumber = -1
-            for(let i = 0;i<11;i++){
-                let randomNumber = Math.floor(Math.random()*(questionBank.length))
-                while (pastNumber === randomNumber) {
-                    randomNumber = Math.floor(Math.random()*(questionBank.length))
-                }
-                pastNumber = randomNumber
-                levelQuestions.push(questionBank[randomNumber])
+            for(let i = questionBank.length-1;i>(questionBank.length -11);i--){
+                let j = Math.floor(Math.random()*(i+1))
+                ;[questionBank[i],questionBank[j]]=[questionBank[j],questionBank[i]]
             }
+            levelQuestions = questionBank
         }else{
-            let pastNumber = -1
-            for(let i = 0;i<questionBank.length;i++){
-                let randomNumber = Math.floor(Math.random()*(questionBank.length))
-                while (pastNumber === randomNumber) {
-                    randomNumber = Math.floor(Math.random()*(questionBank.length))
-                }
-                pastNumber = randomNumber
-                levelQuestions.push(questionBank[randomNumber])
+            for(let i = questionBank.length-1;i>0;i--){
+                let j = Math.floor(Math.random()*(i+1))
+                ;[questionBank[i],questionBank[j]]=[questionBank[j],questionBank[i]]
             }
+            levelQuestions = questionBank
         }
 
         return res.send({success:true,message:levelQuestions})
