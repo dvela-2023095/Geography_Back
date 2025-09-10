@@ -42,7 +42,7 @@ export const updateProgress = async(req, res)=>{
         const {levelCompleted}= req.body
         let userProgress = await Progress.findOne({user:user.uid})
         if(userProgress.levelsCompleted.length >0){
-            if (userProgress.levelsCompleted.some(lvl => lvl.toString() == levelCompleted)) {
+            if (userProgress.levelsCompleted.some(lvl => lvl._id.toString() !== levelCompleted)) {
                 userProgress.levelsCompleted.push(levelCompleted)
                 if(userProgress.blockedLevels.length !== 0){
             
@@ -60,7 +60,7 @@ export const updateProgress = async(req, res)=>{
                 userProgress.blockedLevels = userProgress.blockedLevels.slice(1)
             }
         }
-        
+        console.log(userProgress)
         await userProgress.save()
         return res.send({success:true,message:'Progress successfully ulpdated'})
     } catch (error) {
