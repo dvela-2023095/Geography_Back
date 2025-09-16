@@ -36,35 +36,39 @@ export const getProgressByUser = async (req, res) => {
 }
 
 
-export const updateProgress = async(req, res)=>{
-    try {
-        const {user}=req
-        const {levelCompleted}= req.body
-        let userProgress = await Progress.findOne({user:user.uid})
-        if(userProgress.levelsCompleted.length >0){
-            if (userProgress.levelsCompleted.some(lvl => lvl._id.toString() !== levelCompleted)) {
-                userProgress.levelsCompleted.push(levelCompleted)
-                if(userProgress.blockedLevels.length !== 0){
-            
-                    userProgress.unblockedLevel = userProgress.blockedLevels[0]
-                    userProgress.blockedLevels = userProgress.blockedLevels.slice(1)
-                }
-                
-            }
+export const updateProgress = async (req, res) => {
+  try {
+    const { user } = req;
+    const { levelCompleted } = req.body;
 
-        }else{
-            userProgress.levelsCompleted.push(levelCompleted)
-            if(userProgress.blockedLevels.length !== 0){
-            
-                userProgress.unblockedLevel = userProgress.blockedLevels[0]
-                userProgress.blockedLevels = userProgress.blockedLevels.slice(1)
-            }
-        }
-        console.log(userProgress)
-        await userProgress.save()
-        return res.send({success:true,message:'Progress successfully ulpdated'})
-    } catch (error) {
-        console.error(error)
-        return res.status(500).send({success:false,message:'General error updating the progress'})
+    let userProgress = await Progress.findOne({ user: user.uid });
+
+    // Si no tiene progresos todavía o si no existe el nivel en el array
+    if (
+      userProgress.levelsCompleted.length === 0 ||
+      !userProgress.levelsCompleted.some(
+        lvl => lvl._id.toString() === levelCompleted
+      )
+    ) {
+      userProgress.levelsCompleted.push(levelCompleted);
+
+      if (userProgress.blockedLevels.length !== 0) {
+        userProgress.unblockedLevel = userProgress.blockedLevels[0];
+        userProgress.blockedLevels = userProgress.blockedLevels.slice(1);
+      }
     }
-}
+
+    console.log(userProgress);
+    await userProgress.save();
+
+    return res.send({
+      success: true,
+      message: "Progress successfully updated",
+    });
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .send({ success: false, message: "General error updating the progress" });
+  }
+};
