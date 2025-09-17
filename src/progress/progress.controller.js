@@ -18,22 +18,34 @@ export const addProgress = async (user) => {
 }
 
 export const getProgressByUser = async (req, res) => {
-    try {
-        const { id } = req.params
-        const progress = await Progress.findOne({ user: id })
-            .populate('levelsCompleted.level', '-_id')
-            .populate('blockedLevels.level', '-_id')
+  try {
+    const { id } = req.params
+    let progress = await Progress.findOne({ user: id })
+      .populate('levelsCompleted.level', '-_id')
+      .populate('blockedLevels.level', '-_id')
 
-        if (!progress) return res.status(404).send({
-            success: false,
-            message: 'Progress not found for this user'
-        })
-        return res.status(200).send({success: true,message: 'Progress found.',progress})
-    } catch (e) {
-        console.error(e)
-        return res.status(500).send({success: false,message: 'Internal server error',e })
+    if (!progress) {
+      await addProgress(id)
+      progress = await Progress.findOne({ user: id })
+        .populate('levelsCompleted.level', '-_id')
+        .populate('blockedLevels.level', '-_id')
     }
+
+    return res.status(200).send({
+      success: true,
+      message: 'Progress found or created.',
+      progress
+    })
+  } catch (e) {
+    console.error(e)
+    return res.status(500).send({
+      success: false,
+      message: 'Internal server error',
+      e
+    })
+  }
 }
+
 
 
 export const updateProgress = async (req, res) => {
@@ -71,4 +83,4 @@ export const updateProgress = async (req, res) => {
       .status(500)
       .send({ success: false, message: "General error updating the progress" });
   }
-};
+}
