@@ -12,7 +12,7 @@ const questionSchema = Schema(
             {
                 answer:{
                     type:String,
-                    minlength:[5,'The answer need at least 5 characters'],
+                    minlength:[3,'The answer need at least 5 characters'],
                     maxlength:[50, `The answer can't overcome 50 characters`],
                     required:[true,'Answer is required']
                 },
